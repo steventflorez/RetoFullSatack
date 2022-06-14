@@ -1,9 +1,11 @@
 package com.sofka.crud.domain;
 
+import lombok.Data;
+
 import javax.persistence.*;
 import java.util.LinkedHashSet;
 import java.util.Set;
-
+@Data
 @Entity
 @Table(name = "tarea")
 public class Tarea {
@@ -18,6 +20,6 @@ public class Tarea {
     @OneToMany(mappedBy = "tareaTra")
     private Set<Subtarea> subtareas = new LinkedHashSet<>();
 
-   
+
 
 }

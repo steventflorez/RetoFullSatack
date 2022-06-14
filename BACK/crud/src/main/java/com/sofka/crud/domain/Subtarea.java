@@ -1,7 +1,9 @@
 package com.sofka.crud.domain;
 
-import javax.persistence.*;
+import lombok.Data;
 
+import javax.persistence.*;
+@Data
 @Entity
 @Table(name = "subtarea")
 public class Subtarea {
