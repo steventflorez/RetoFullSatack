@@ -1,0 +1,24 @@
+CREATE SCHEMA IF NOT EXISTS crudfull DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci ;
+USE crudfull ;
+
+
+CREATE TABLE IF NOT EXISTS crudfull.tarea (
+  tra_id INT NOT NULL AUTO_INCREMENT,
+  tra_titulo VARCHAR(100) NOT NULL,
+  PRIMARY KEY (tra_id))
+ENGINE = InnoDB;
+
+
+CREATE TABLE IF NOT EXISTS crudfull.subtarea (
+  subtra_id INT NOT NULL AUTO_INCREMENT,
+  subtra_titulo VARCHAR(100) NOT NULL,
+  subtra_echo BOOLEAN NOT NULL,
+  tarea_tra_id INT NOT NULL,
+  PRIMARY KEY (subtra_id),
+  INDEX fk_subtarea_tarea_idx (tarea_tra_id ASC) VISIBLE,
+  CONSTRAINT fk_subtarea_tarea
+    FOREIGN KEY (tarea_tra_id)
+    REFERENCES crudfull.tarea (tra_id)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
