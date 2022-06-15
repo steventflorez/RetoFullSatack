@@ -11,5 +11,7 @@ public interface ITarea {
 
     public Tarea crearTarea(Tarea tarea);
 
+    public void deleteTarea(Integer id);
+
 
 }

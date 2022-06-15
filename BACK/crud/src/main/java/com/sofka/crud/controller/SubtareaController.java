@@ -36,6 +36,11 @@ public class SubtareaController {
         return data;
     }
 
+    @DeleteMapping(path = "/subtarea/delete/{id}")
+    public void deleteSubtarea(@PathVariable ("id") Integer id){
+        subTareaService.deleteSubtarea(id);
+    }
+
 
 
 }

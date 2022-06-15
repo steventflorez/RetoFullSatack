@@ -16,7 +16,7 @@ public class TareaService implements ITarea {
 
 
     @Override
-    @Transactional
+
     public List<Tarea> getTareas() {
         return (List<Tarea>) tareaRepository.findAll();
     }
@@ -24,5 +24,10 @@ public class TareaService implements ITarea {
     @Override
     public Tarea crearTarea(Tarea tarea) {
         return tareaRepository.save(tarea);
+    }
+
+    @Override
+    public void deleteTarea(Integer id) {
+        tareaRepository.deleteById(id);
     }
 }

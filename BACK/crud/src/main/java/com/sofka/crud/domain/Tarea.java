@@ -22,7 +22,10 @@ public class Tarea {
     private String traTitulo;
 
 
-    @OneToMany(mappedBy = "tareaTra")
+    @OneToMany(fetch = FetchType.EAGER,
+            targetEntity = Subtarea.class,
+            cascade = CascadeType.REMOVE,
+            mappedBy = "tareaTra")
 
     @JsonManagedReference
     private List<Subtarea> subtareas = new ArrayList<>();

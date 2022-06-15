@@ -1,14 +1,12 @@
 package com.sofka.crud.service;
 
 import com.sofka.crud.domain.Subtarea;
-import com.sofka.crud.domain.Tarea;
 import com.sofka.crud.repository.SubtareaRepository;
 import com.sofka.crud.service.interfaces.ISub;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
-import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -38,9 +36,9 @@ public class SubTareaService implements ISub {
     }
 
     @Override
-    public Subtarea deleteSubtarea(Integer id) {
-        //var subtarea = subtareaRepository.findAllById(id);
-        return null;
+    public void deleteSubtarea(Integer id) {
+        //var subtarea = subtareaRepository.findAllById(Collections.singleton(id));
+        subtareaRepository.deleteById(id);
     }
 
 //    @Override

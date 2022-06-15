@@ -27,4 +27,9 @@ public class TareController {
         public void createTarea(@RequestBody Tarea tarea){
            tareaService.crearTarea(tarea);
     }
+
+    @DeleteMapping(path = "/tarea/delete/{id}")
+    public void deletetarea(@PathVariable ("id") Integer id){
+        tareaService.deleteTarea(id);
+    }
 }
