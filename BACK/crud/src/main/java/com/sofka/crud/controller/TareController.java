@@ -5,10 +5,7 @@ import com.sofka.crud.domain.Tarea;
 import com.sofka.crud.service.TareaService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -21,8 +18,13 @@ public class TareController {
     @Autowired
     private TareaService tareaService;
 
-    @GetMapping(path = "/")
-public List<Tarea> getTareas(){
+    @GetMapping(path = "/tareas")
+        public List<Tarea> getTareas(){
         return tareaService.getTareas();
+    }
+
+    @PostMapping(path = "/createtarea")
+        public void createTarea(@RequestBody Tarea tarea){
+           tareaService.crearTarea(tarea);
     }
 }
