@@ -1,0 +1,88 @@
+.cont_titulo{
+    width: 100%;
+    text-align: center;
+    margin-top: 50px;
+}
+.card_tarea{
+    width: 600px;
+}
+header{
+    position: sticky;
+    top: 0;
+    z-index: 100;
+
+}
+.header_card{
+    display: flex;
+    align-items: center;
+    
+}
+
+.cont_tareas{
+   
+   display: flex;
+   flex-direction: column;
+   padding: 30px;
+  
+}
+
+.crear{
+    position: absolute;
+    top: 10px;
+    right: 20px;
+    padding: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    
+    height: 60px;
+    
+}
+
+.crear input{
+    width: 0px;
+    height: 0 20px;
+    padding: 0 20px;
+    font-size: 18px;
+    color: #000;
+    outline: none;
+    border: 1px solid silver;
+    border-radius: 30px;
+    transition: all 0.6s ease;
+}
+.crear .icon{
+    position: absolute;
+    width: 55px;
+    height: 55px;
+    line-height: 55px;
+    top: 0;
+    right: 0;
+    background-color: #440088;
+    text-align: center;
+    color: #fff;
+    font-size: 20px;
+    border-radius: 50%;
+    cursor: pointer;
+}
+
+.icon{
+    transition: all 0.6s ease;
+}
+
+.crear:hover input{
+    width: 240px;
+}
+
+.btn_eliminar_tarea{
+    position: absolute;
+    top: 0px;
+    left: 200px;
+}
+
+.spam_id{
+    display: none;
+}
+
+.alert{
+    display: none;
+}

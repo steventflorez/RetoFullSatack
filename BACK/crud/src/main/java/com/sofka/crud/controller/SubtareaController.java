@@ -12,9 +12,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Slf4j
+@CrossOrigin
 @RestController
-@CrossOrigin(origins = "http://localhost:3000", methods =
-        {RequestMethod.GET, RequestMethod.POST})
 public class SubtareaController {
 
     @Autowired

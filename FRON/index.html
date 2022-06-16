@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <link rel="stylesheet" href="/css/style.css" />
+
+    <!--**************BOOTSWATCH*************-->
+    <link
+      rel="stylesheet"
+      href="https://bootswatch.com/5/morph/bootstrap.min.css"
+    />
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+   
+    <title>Crud Full</title>
+  </head>
+  <body>
+    
+    <div class="container">
+      
+      <header class="bg-secondary">
+        <div class="alert alert-dismissible alert-info alert">
+          <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+          <strong>Tarea Generada</strong> 
+        </div>
+        <div class="cont_titulo">
+          <h1>Agenda de Actividades</h1>
+        </div>
+
+        <form action="" id="form">
+          <div class="form-group">
+            <label for="exampleInputEmail1" class="form-label mt-4"
+              >Agregar tarea</label
+            >
+
+            <input
+              type="text"
+              class="form-control"
+              id="tarea"
+              aria-describedby="Crear Tarea"
+              placeholder="Ingresa una Tarea"
+            />
+
+            <small id="emailHelp" class="form-text text-muted"
+              >Escribe una tarea y agragala a tu agenda</small
+            >
+            <br />
+            <button type="button" id="btnCrear" class="btn btn-primary">
+              Agregar
+            </button>
+          </div>
+        </form>
+      </header>
+
+
+
+
+
+      <section class="cont_tareas row">
+        
+      </section>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script type="module" src="/js/main.js"></script>
+  </body>
+</html>

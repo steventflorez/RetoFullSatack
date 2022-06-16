@@ -10,9 +10,9 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @Slf4j
+
+@CrossOrigin
 @RestController
-@CrossOrigin(origins = "http://localhost:3000", methods =
-        {RequestMethod.GET, RequestMethod.POST})
 public class TareController {
 
     @Autowired
@@ -28,7 +28,7 @@ public class TareController {
            tareaService.crearTarea(tarea);
     }
 
-    @DeleteMapping(path = "/tarea/delete/{id}")
+        @DeleteMapping(path = "/tarea/delete/{id}")
     public void deletetarea(@PathVariable ("id") Integer id){
         tareaService.deleteTarea(id);
     }
