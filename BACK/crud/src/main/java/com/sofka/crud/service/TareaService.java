@@ -15,17 +15,30 @@ public class TareaService implements ITarea {
     private TareaRepository tareaRepository;
 
 
+    /**
+     * Trae Las tareas
+     * @return Retorna una lista con todas las tareas
+     */
     @Override
-
     public List<Tarea> getTareas() {
         return (List<Tarea>) tareaRepository.findAll();
     }
+
+    /**
+     * crea una tarea
+     * @param tarea Recube un Objeto con un Titulo de la tarea
+     * @return Retorna una tarea
+     */
 
     @Override
     public Tarea crearTarea(Tarea tarea) {
         return tareaRepository.save(tarea);
     }
 
+    /**
+     * Elimina una tarea
+     * @param id Recibe el id de la tarea
+     */
     @Override
     public void deleteTarea(Integer id) {
         tareaRepository.deleteById(id);

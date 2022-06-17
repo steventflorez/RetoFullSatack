@@ -16,17 +16,33 @@ public class SubTareaService implements ISub {
     @Autowired
     public SubtareaRepository subtareaRepository;
 
-
+    /**
+     * Traer todas las Subtareas
+     * @return retorna una lista con todas las Subtareas
+     */
     @Override
     @Transactional
     public List<Subtarea> getSubtarea() {
         return (List<Subtarea>) subtareaRepository.findAll();
     }
 
+    /**
+     * Crear una Subtarea
+     * @param subtarea objeto con los datos de la subtaria como (nombre, idForanea , cero por defecto)
+     * @return retorna un objeto subTarea
+     */
+
     @Override
     public Subtarea crearSubtarea(Subtarea subtarea) {
         return subtareaRepository.save(subtarea);
     }
+
+    /**
+     * Modificar una Subtarea
+     * @param id la idForanea
+     * @param subtarea Objeto con los datos de la Subtarea
+     * @return retorna un Objeto con los cambios realizados
+     */
 
     @Override
     public Subtarea updateSubtarea(Integer id, Subtarea subtarea) {
@@ -35,15 +51,16 @@ public class SubTareaService implements ISub {
         return subtarea;
     }
 
+    /**
+     * Eliminar una Subtarea
+     * @param id id de la Subtarea
+     */
+
     @Override
     public void deleteSubtarea(Integer id) {
-        //var subtarea = subtareaRepository.findAllById(Collections.singleton(id));
+
         subtareaRepository.deleteById(id);
     }
 
-//    @Override
-//    public List<Subtarea> buscarSubtarea(String datoABuscar) {
-//
-//        return subtareaRepository.getSubTareas(datoABuscar);
-//    }
+
 }

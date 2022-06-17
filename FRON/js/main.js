@@ -6,28 +6,69 @@ let url = 'http://localhost:8080'
 getTarea()
 let subTareaEdit = {}
 
+
+
 btn.addEventListener('click', (e) => {
 
     postTarea(document.querySelector('#tarea').value)
     document.querySelector('#tarea').value = ''
 })
 
+
+
 section_tareas.addEventListener('click', (e) => {
     directionClick(e.target)
+    
 })
 
 function directionClick(e) {
+   
+    console.log(e.type)
 
+    if(e.type == "checkbox"){
+
+        let info ={
+            id: e.parentElement.parentElement.parentElement.children[0].textContent,
+            titulo: e.parentElement.parentElement.parentElement.children[1].textContent,
+            echo: e.checked? 1 : 0,
+            id_padre: e.parentElement.parentElement.parentElement.children[3].children[0].textContent
+        }
+        
+        console.log(info)
+        putSubTarea(info.id_padre, info)
+    }
+    
     if (e.classList[2] == 'btn_eliminar_tarea') {
         deleteTarea(e.previousElementSibling.textContent)
     }
 
-    if (e.classList[0] == "icon") {
-        //id 
 
+
+    if(e.classList[0] == "icon_i"){
+       
+         let sub = {
+            id: subTareaEdit.id,
+            titulo: document.querySelector(`#textEdit_${subTareaEdit.id_padre}`).value,
+            echo: subTareaEdit.echo
+
+        }  
+       console.log(sub)
+      putSubTarea(subTareaEdit.id_padre, sub)
+
+    }
+    
+
+    if (e.classList[0] == "icon") {
         
         if(e.children[0]){
-            console.log('hola')
+            let sub = {
+                id: subTareaEdit.id,
+                titulo: document.querySelector(`#textEdit_${subTareaEdit.id_padre}`).value,
+                echo: subTareaEdit.echo
+    
+            }  
+         
+          putSubTarea(subTareaEdit.id_padre, sub)
         }else{
             
             console.log()
@@ -42,41 +83,57 @@ function directionClick(e) {
             
         }
 
-       /*  console.log()
-        let subTarea = {
-            titulo: e.previousElementSibling.value,
-            echo: 0
-        }
-        postsUBTarea(e.parentElement.parentElement.id, subTarea)
-        console.log(e.parentElement.parentElement.id) */
-
+      
     }
-    console.log(e.classList)
+    if(e.classList[0] == "delete_i"){
+     
+        deleteSubTarea(e.classList[1])
+    }
+    if (e.classList[0] == "delete") {
+       console.log(e.classList[1])
+        
+      
+    }
+
+    if(e.classList[1] == "editar_i"){
+        console.log()
+        let info = {
+            id_tarea : e.parentElement.previousElementSibling.textContent,
+            id_sub : e.classList[0]
+        }
+        pintarEditar(e,info.id_tarea,info.id_sub)
+    }
     if (e.classList[1] == "editar") {
-        console.log(e.previousElementSibling.textContent )
+        console.log(e.previousElementSibling.textContent)
+        let info = {
+            id_tarea : e.previousElementSibling.textContent,
+            id_sub : e.classList[0]
+        }
+        pintarEditar(e,info.id_tarea,info.id_sub)
+        
+      
+    }
 
-       /*  let input = document.querySelector(`#textEdit_${e.classList[0]}`)
+
+
+}
+
+function pintarEditar(e,id_tare,id_sub){
+
+   
+    let input = document.querySelector(`#textEdit_${id_tare}`)
         input.style.width = "240px"
-        input.value = document.querySelector(`#tarea_${e.classList[1]}`).textContent
+        input.value = document.querySelector(`#tarea_${id_sub}`).textContent
 
-        let icon = document.querySelector(`.icon_${e.classList[0]}`)
-        subTareaEdit.id = e.classList[1]
+        let icon = document.querySelector(`.icon_${id_tare}`)
+        subTareaEdit.id = id_sub
         subTareaEdit.titulo = input.value
-        subTareaEdit.id_padre = e.classList[0]
+        subTareaEdit.id_padre = id_tare
         subTareaEdit.echo = 0
 
-        icon.innerHTML = '<i class="fa fa-pencil"></i>'
+        icon.innerHTML = '<i class="icon_i fa fa-pencil"></i>'
         icon.style.background = '#F0D405'
-        console.log(subTareaEdit) */
-    }
-
-
-
-
-
-
-
-
+        console.log(subTareaEdit)
 
 }
 
@@ -89,8 +146,11 @@ function pintarTareas(tareas) {
 
         subtra = ''
 
-        tarea.subtareas.forEach(subtarea => {
-            console.log(tarea.id)
+        tarea.subtareas.forEach(subtarear => {
+            console.log(subtarear.subtraEcho == 1? true: false)
+            let check = subtarear.subtraEcho == 1? 'checked': ''
+            let ckeckClass = subtarear.subtraEcho == 1? 'danger': 'active'
+            let dis = subtarear.subtraEcho == 1? 'd-none': ''
             subtra += `
             <table class="table table-hover ">
             <thead>
@@ -102,22 +162,22 @@ function pintarTareas(tareas) {
               </tr>
             </thead>
             <tbody >
-              <tr class="table-active">
-                <th scope="row">${subtarea.id}</th>
-                <td id="tarea_${subtarea.id}">${subtarea.subtraTitulo}</td>
+              <tr class="table-${ckeckClass}">
+                <th scope="row">${subtarear.id}</th>
+                <td id="tarea_${subtarear.id}">${subtarear.subtraTitulo}</td>
                 <td>
                   <div class="form-check form-switch">
-                  <input class="form-check-input" type="checkbox" id="check_${subtarea.id}">
+                  <input class="form-check-input" type="checkbox" ${check}   id="check_${subtarear.id}">
                   
                 </div></td>
                 <td >
-                    <spam id='id_sub_${subtarea.id}'>${tarea.id}</spam> 
-                  <button type="button" class=" ${subtarea.id} editar btn btn-outline-success " id= "edit_${subtarea.id}"><i class="${tarea.id} ${subtarea.id} editar fa fa-pencil"></i></button>
-                  <button type="button" class="btn btn-outline-danger" id= "delete_${subtarea.id}"><i class="fa fa-trash-o"></i></button>
+                    <spam class = 'd-none'>${tarea.id}</spam> 
+                  <button type="button" class=" ${subtarear.id} editar btn btn-outline-success ${dis} " id= "edit_${subtarear.id}"><i class=" ${subtarear.id} editar_i fa fa-pencil"></i></button>
+                  <button type="button" class="delete ${subtarear.id} btn btn-outline-danger " id= "delete_${subtarear.id}"><i class="delete_i ${subtarear.id} fa fa-trash-o"></i></button>
                 </td>
               </tr>
             </tbody>
-          </table>`
+          </table>` 
 
         })
 
@@ -278,15 +338,16 @@ async function deleteSubTarea(id) {
                 "Content-type": "application/json; charset=utf-8"
             }
         },
-        
+
         res = await fetch(`${url}/subtarea/delete/${id}`, options)
 
-
+        getTarea()
 }
 
 
 async function putSubTarea(IdTarea, SubTarea) {
 
+    console.log(IdTarea, SubTarea   )
     let options = {
             method: "PUT",
             headers: {
@@ -303,6 +364,7 @@ async function putSubTarea(IdTarea, SubTarea) {
             })
         },
         res = await fetch(`${url}/subtarea/edit/${SubTarea.id}`, options)
+        getTarea()
 
 
 }
